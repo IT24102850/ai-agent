@@ -1,0 +1,42 @@
+policies:
+  - id: refund_requires_order
+    name: Refund requires an order
+    description: A refund decision must include an order identifier.
+    when: "action == 'refund' and not order_id"
+    decision: deny
+    severity: high
+
+  - id: refund_amount_limit
+    name: Refund amount limit
+    description: A single refund may not exceed 500 currency units.
+    when: "action == 'refund' and amount > 500"
+    decision: deny
+    severity: high
+
+  - id: refund_requires_approval
+    name: Large refund approval
+    description: Refunds over 100 currency units require approval.
+    when: "action == 'refund' and amount > 100 and approved != True"
+    decision: deny
+    severity: medium
+
+  - id: suspicious_account
+    name: Suspicious account refund
+    description: Block refunds for accounts marked suspicious.
+    when: "action == 'refund' and account_status == 'suspicious'"
+    decision: deny
+    severity: critical
+
+  - id: refund_after_expiry
+    name: Refund outside return window
+    description: Block refunds after the allowed return window.
+    when: "action == 'refund' and days_since_purchase > 30"
+    decision: deny
+    severity: medium
+
+  - id: full_refund_requires_manager
+    name: Full refund manager approval
+    description: Full refunds require explicit manager approval.
+    when: "action == 'refund' and refund_type == 'full' and manager_approved != True"
+    decision: deny
+    severity: high

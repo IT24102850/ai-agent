@@ -1,0 +1,21 @@
+# Example Prometheus rule syntax only.
+# It is not deployed or wired to a real alert receiver.
+groups:
+  - name: agentblackbox-level1
+    rules:
+      - alert: AgentBlackboxDatabaseDown
+        expr: agentblackbox_database_up == 0
+        for: 1m
+        labels:
+          severity: page
+        annotations:
+          summary: "AgentBlackbox database is not reachable"
+          runbook: "https://github.com/OWNER/REPO/blob/main/docs/ops/ON_CALL.md"
+      - alert: AgentBlackboxErrorBudgetBurnFast
+        expr: increase(agentblackbox_requests_total[5m]) > 0
+        for: 5m
+        labels:
+          severity: page
+        annotations:
+          summary: "AgentBlackbox fast error-budget burn"
+          runbook: "https://github.com/OWNER/REPO/blob/main/docs/INCIDENT_RESPONSE.md"

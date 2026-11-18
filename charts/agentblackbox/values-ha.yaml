@@ -1,0 +1,16 @@
+api:
+  replicaCount: 3
+  persistence:
+    enabled: false
+  env:
+    ENV: production
+worker:
+  enabled: true
+  replicaCount: 2
+web:
+  replicaCount: 3
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 2
+networkPolicy:
+  enabled: true

@@ -1,0 +1,8 @@
+{
+  "format": "agentblackbox/canonical-json",
+  "version": 1,
+  "vectors": [
+    {"input": {"z": "e\u0301", "a": 1}, "canonical": "{\"a\":1,\"z\":\"\u00e9\"}"},
+    {"input": 9007199254740993, "canonical": "\"9007199254740993\""}
+  ]
+}

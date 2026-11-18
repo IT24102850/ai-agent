@@ -1,0 +1,6 @@
+# Default ownership; replace with team handles for an organization.
+* @hasir
+/api/ @hasir
+/src/ @hasir
+/web/ @hasir
+/docs/ops/ @hasir

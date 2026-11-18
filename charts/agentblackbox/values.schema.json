@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["api", "web", "worker", "migration", "networkPolicy"],
+  "properties": {
+    "nameOverride": {"type": "string"},
+    "fullnameOverride": {"type": "string"},
+    "imagePullSecrets": {"type": "array", "items": {"type": "object"}},
+    "api": {
+      "type": "object",
+      "required": ["enabled", "replicaCount", "image", "resources", "persistence"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "replicaCount": {"type": "integer", "minimum": 0},
+        "image": {"type": "object"},
+        "service": {"type": "object"},
+        "env": {"type": "object"},
+        "secretRef": {"type": "string"},
+        "persistence": {"type": "object"},
+        "resources": {"type": "object"},
+        "probes": {"type": "object"}
+      }
+    },
+    "web": {
+      "type": "object",
+      "required": ["enabled", "replicaCount", "image", "resources"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "replicaCount": {"type": "integer", "minimum": 0},
+        "image": {"type": "object"},
+        "resources": {"type": "object"}
+      }
+    },
+    "worker": {
+      "type": "object",
+      "required": ["enabled", "replicaCount", "image", "resources"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "replicaCount": {"type": "integer", "minimum": 0},
+        "image": {"type": "object"},
+        "command": {"type": "array", "items": {"type": "string"}},
+        "resources": {"type": "object"}
+      }
+    },
+    "migration": {"type": "object"},
+    "podDisruptionBudget": {"type": "object"},
+    "networkPolicy": {"type": "object"},
+    "serviceAccount": {"type": "object"},
+    "podSecurityContext": {"type": "object"},
+    "containerSecurityContext": {"type": "object"}
+  }
+}

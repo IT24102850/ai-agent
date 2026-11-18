@@ -1,0 +1,10 @@
+api:
+  replicaCount: 2
+worker:
+  enabled: true
+  replicaCount: 1
+web:
+  replicaCount: 2
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1

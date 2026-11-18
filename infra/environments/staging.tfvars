@@ -1,0 +1,9 @@
+environment                = "staging"
+aws_region                 = "us-east-1"
+api_image                  = "REPLACE_WITH_IMMUTABLE_ECR_IMAGE_DIGEST"
+object_store_bucket_name   = "REPLACE_WITH_GLOBALLY_UNIQUE_STAGING_BUCKET"
+vpc_cidr                   = "10.21.0.0/16"
+ecs_desired_count          = 2
+db_instance_class          = "db.t4g.micro"
+monthly_budget_usd         = 100
+budget_notification_emails = []
